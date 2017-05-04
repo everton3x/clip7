@@ -1,3 +1,6 @@
 *.geany
 *.sh
-vendor
+vendor/
+output/*
+doc/*
+composer.lock
