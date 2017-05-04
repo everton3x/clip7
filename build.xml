@@ -16,19 +16,10 @@
 		<echo msg="Task generatedoc terminated!"/>
 	</target>
 
-	<target name="git" depends="generatedoc">
-		<echo msg="Syncing in Git..."/>
-		<exec command="git add *" checkreturn="true" />
-		<exec command="git commit -m 'Automatic commit by Phing'" checkreturn="true" />
-		<exec command="git push" checkreturn="true" />
-		<echo msg="Task git terminated!"/>
-	</target>
-
-    <target name="build">
+	<target name="build">
 		<echo msg="Building..."/>
 		<phingcall target="codestandard" />
 		<phingcall target="generatedoc" />
-		<phingcall target="git" />
 		<echo msg="Build terminated!"/>
     </target>
 

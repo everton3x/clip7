@@ -6,11 +6,4 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'CLIP\\Error\\DefaultError' => $baseDir . '/src/Error/DefaultError.php',
-    'CLIP\\Error\\ErrorInterface' => $baseDir . '/src/Error/ErrorInterface.php',
-    'CLIP\\Input\\DefaultInput' => $baseDir . '/src/Input/DefaultInput.php',
-    'CLIP\\Input\\InputInterface' => $baseDir . '/src/Input/InputInterface.php',
-    'CLIP\\Output\\DefaultOutput' => $baseDir . '/src/Output/DefaultOutput.php',
-    'CLIP\\Output\\OutputInterface' => $baseDir . '/src/Output/OutputInterface.php',
-    'CLIP\\Program' => $baseDir . '/src/Program.php',
 );
