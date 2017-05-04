@@ -1,0 +1,7 @@
+PHPUnit 6.2-g42cca1b by Sebastian Bergmann and contributors.
+
+Program
+ [x] Program must have input property
+ [x] Program must have output property
+ [x] Program must have error property
+
