@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="CLIP" default="build" basedir=".">
+
+
+	<target name="codestandard">
+		<echo msg="Checking code standard..."/>
+		<exec command="phpcbf --colors --report=full --standard=PSR2 src" checkreturn="true"/>
+		<exec command="phpcs --colors --report=full --standard=PSR2 src" checkreturn="true"/>
+		<echo msg="Task codestandard terminated!"/>
+	</target>
+
+	<target name="generatedoc" depends="codestandard">
+		<echo msg="Generating documentation..."/>
+		<exec command="phpdocumentor" checkreturn="true"/>
+		<echo msg="Task generatedoc terminated!"/>
+	</target>
+
+	<target name="git" depends="generatedoc">
+		<echo msg="Syncing in Git..."/>
+		<exec command="git add *" checkreturn="true" />
+		<exec command="git commit -m 'Automatic commit by Phing'" checkreturn="true" />
+		<exec command="git push" checkreturn="true" />
+		<echo msg="Task git terminated!"/>
+	</target>
+
+    <target name="build">
+		<echo msg="Building..."/>
+		<phingcall target="codestandard" />
+		<phingcall target="generatedoc" />
+		<phingcall target="git" />
+		<echo msg="Build terminated!"/>
+    </target>
+
+</project>
