@@ -2,22 +2,28 @@
 
 <project name="CLIP" default="build" basedir=".">
 
+	<target name="testing">
+		<echo msg="Testing code by PHPUnit..."/>
+		<exec command="phpunit --testdox --colors=auto tests/" checkreturn="true" passthru="true"/>
+		<echo msg="Task testing terminated!"/>
+	</target>
 
 	<target name="codestandard">
 		<echo msg="Checking code standard..."/>
-		<exec command="phpcbf --colors --report=full --standard=PSR2 src" checkreturn="true"/>
-		<exec command="phpcs --colors --report=full --standard=PSR2 src" checkreturn="true"/>
+		<exec command="phpcbf --colors --report=full --standard=PSR2 src" checkreturn="true" passthru="true"/>
+		<exec command="phpcs --colors --report=full --standard=PSR2 src" checkreturn="true" passthru="true"/>
 		<echo msg="Task codestandard terminated!"/>
 	</target>
 
 	<target name="generatedoc" depends="codestandard">
 		<echo msg="Generating documentation..."/>
-		<exec command="phpdocumentor" checkreturn="true"/>
+		<exec command="phpdocumentor" checkreturn="true" passthru="true"/>
 		<echo msg="Task generatedoc terminated!"/>
 	</target>
 
 	<target name="build">
 		<echo msg="Building..."/>
+		<phingcall target="testing" />
 		<phingcall target="codestandard" />
 		<phingcall target="generatedoc" />
 		<echo msg="Build terminated!"/>

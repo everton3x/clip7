@@ -1,6 +1,7 @@
 *.geany
 *.sh
+composer.lock
 vendor/
 output/*
 doc/*
-composer.lock
+bin/

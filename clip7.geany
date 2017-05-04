@@ -30,7 +30,7 @@ long_line_column=120
 current_page=-1
 
 [VTE]
-last_dir=/home/everton/github/clip7
+last_dir=/home/everton/github/clip7/src/Input
 
 [prjorg]
 source_patterns=*.c;*.C;*.cpp;*.cxx;*.c++;*.cc;*.m;
