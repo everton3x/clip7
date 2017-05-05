@@ -1,5 +1,4 @@
-*.geany
-*.sh
+.kateproject
 composer.lock
 vendor/
 output/*
