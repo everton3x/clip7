@@ -1,10 +1,11 @@
 <?php
 /**
- * CLIP\Error\DefaultError file
- * @package CLIP
+ * CLIP\Error\DefaultError
+ *
+ * @package    CLIP
  * @subpackage Error
- * @author Everton da Rosa <everton3x@gmail.com>
- * @since 1.0
+ * @author     Everton da Rosa <everton3x@gmail.com>
+ * @since      1.0
  */
 namespace CLIP\Error;
 
@@ -12,15 +13,21 @@ use CLIP\Error\ErrorInterface;
 use Exception;
 
 /**
- * Implements the error handler to STDERR.
+ * Implementa um manipualdor de erros com STDERR.
  */
 class DefaultError implements ErrorInterface
 {
-    /** @var resource The STDERR */
+
+    /**
+     *
+     *
+     * @var resource STDERR
+     */
     protected $resource = null;
 
     /**
-     * Class constructor
+     * Construtor.
+     *
      * @throws \Exception
      */
     public function __construct()
@@ -33,8 +40,9 @@ class DefaultError implements ErrorInterface
     }
 
     /**
-     * Write an info message to STDERR.
-     * @param string $data The info message.
+     * Escreve uma mensagem informativa para STDERR.
+     *
+     * @param  string $data A mensagem.
      * @return CLIP\Error\ErrorInterface
      */
     public function info(string $data): ErrorInterface
@@ -48,8 +56,9 @@ class DefaultError implements ErrorInterface
     }
 
     /**
-     * Write an alert message to STDERR.
-     * @param string $data The alert message.
+     * Escreve um aviso/alerta para STDERR.
+     *
+     * @param  string $data O alerta/aviso.
      * @return CLIP\Error\ErrorInterface
      */
     public function alert(string $data): ErrorInterface
@@ -63,8 +72,9 @@ class DefaultError implements ErrorInterface
     }
 
     /**
-     * Write an error message to STDERR
-     * @param string $data An error message.
+     * Escreve o erro para STDERR.
+     *
+     * @param  string $data O erro.
      * @return CLIP\Error\ErrorInterface
      */
     public function error(string $data): ErrorInterface
@@ -78,7 +88,8 @@ class DefaultError implements ErrorInterface
     }
 
     /**
-     * Get STDERR resource
+     * Retorna STDERR.
+     *
      * @return resource The STDERR
      */
     public function getResource()

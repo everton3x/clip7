@@ -1,29 +1,33 @@
 <?php
 /**
- * CLIP\Input\InputInterface file.
- * @author Everton da Rosa <everton3x@gmail.com>
- * @since 1.0
- * @package CLIP
+ * CLIP\Input\InputInterface.
+ *
+ * @author     Everton da Rosa <everton3x@gmail.com>
+ * @since      1.0
+ * @package    CLIP
  * @subpackage Input
  */
 namespace CLIP\Input;
 
 /**
- * Interface to input handler.
+ * Interface para um manipulador de entrada de dados.
  *
- * An input can be the terminal itself, a file, a stream, a database, or anything else that provides
- *  data for the program.
+ * Um input pode ser dados digitados no terminal, um stream, um banco de dados
+ * ou qualquer outro modo de fornecer dados para o programa.
  */
 interface InputInterface
 {
+
     /**
-     * Read data from input.
+     * Leitor padrão de dados.
+     *
      * @return mixed
      */
     public function read();
 
     /**
-     * Return the input resource.
+     * Retorna o recurso.
+     *
      * @return mixed
      */
     public function getResource();

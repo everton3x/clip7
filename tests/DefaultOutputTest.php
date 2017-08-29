@@ -1,5 +1,5 @@
 <?php
-require_once 'vendor/autoload.php';
+require_once '../vendor/autoload.php';
 
 use PHPUnit\Framework\TestCase;
 
@@ -32,11 +32,11 @@ final class DefaultOutputTest extends TestCase
 	}
 
 	/**
-	 * @covers CLIP\Output\DefaultOutput::nl()
+	 * @covers CLIP\Output\DefaultOutput::eol()
 	 */
-	public function testNlMustReturnOutputInterface(): void
+	public function testEolMustReturnOutputInterface(): void
 	{
 		$output = new CLIP\Output\DefaultOutput();
-		$this->assertInstanceOf('CLIP\Output\DefaultOutput', $output->nl());
+		$this->assertInstanceOf('CLIP\Output\DefaultOutput', $output->eol());
 	}
 }

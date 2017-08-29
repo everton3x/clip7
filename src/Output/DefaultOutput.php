@@ -1,10 +1,11 @@
 <?php
 /**
- * CLIP\Output\DefaultOutput file
- * @package CLIP
+ * CLIP\Output\DefaultOutput
+ *
+ * @package    CLIP
  * @subpackage Output
- * @author Everton da Rosa <everton3x@gmail.com>
- * @since 1.0
+ * @author     Everton da Rosa <everton3x@gmail.com>
+ * @since      1.0
  */
 namespace CLIP\Output;
 
@@ -12,16 +13,21 @@ use CLIP\Output\OutputInterface;
 use Exception;
 
 /**
- * Implements an output to STDOUT.
+ * implementa um output padrão usando STDOUT.
  */
 class DefaultOutput implements OutputInterface
 {
 
-    /** @var resource The STDOUT */
+    /**
+     *
+     *
+     * @var resource STDOUT
+     */
     protected $resource = null;
 
     /**
-     * Output constructor
+     * Construtor.
+     *
      * @throws \Exception
      */
     public function __construct()
@@ -34,8 +40,9 @@ class DefaultOutput implements OutputInterface
     }
 
     /**
-     * Write data to STDOUT.
-     * @param string $data The data to write using fwrite.
+     * Escreve dados para STDOUT.
+     *
+     * @param  string $data Os dados para serem escritos.
      * @return CLIP\Output\OutputInterface
      */
     public function write(string $data): OutputInterface
@@ -45,18 +52,20 @@ class DefaultOutput implements OutputInterface
     }
 
     /**
-     * Write in STDOUT a new line with PHP_EOL.
+     * Escreve uma quebra de linha ao final com PHP_EOL.
+     *
      * @return CLIP\Output\OutputInterface
      */
-    public function nl(): OutputInterface
+    public function eol(): OutputInterface
     {
         fwrite($this->getResource(), PHP_EOL);
         return $this;
     }
 
     /**
-     * Get STDOUT resource.
-     * @return resource The STDOUT.
+     * Retorna STDOUT.
+     *
+     * @return resource STDOUT.
      */
     public function getResource()
     {

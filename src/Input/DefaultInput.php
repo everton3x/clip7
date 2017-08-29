@@ -1,28 +1,34 @@
 <?php
-
 /**
- * CLIP\InputDefaultInput file
- * @package CLIP
+ * CLIP\InputDefaultInput
+ *
+ * @package    CLIP
  * @subpackage Input
- * @since 1.0
- * @author Everton da Rosa <everton3x@gmail.com>
+ * @since      1.0
+ * @author     Everton da Rosa <everton3x@gmail.com>
  */
 namespace CLIP\Input;
 
 use CLIP\Input\InputInterface;
 
 /**
- * Dafault input handler.
+ * Input padrão.
  *
- * This input points to PHP's STDIN.
+ * Usa STDIN do PHP para entrada de dados.
  */
 class DefaultInput implements InputInterface
 {
-    /** @var resource The STDIN */
+
+    /**
+     *
+     *
+     * @var resource STDIN
+     */
     protected $resource = null;
 
     /**
-     * The class constructor.
+     * Construtor.
+     *
      * @throws \Exception
      */
     public function __construct()
@@ -35,10 +41,11 @@ class DefaultInput implements InputInterface
     }
 
     /**
-     * Read data from STDIN.
+     * Lê dados de STDIN.
      *
-     * This use fgets and remove last PHP_EOL;
-     * @return string Return a string from STDIN with fgets.
+     * Isto usa fgets e remove a última quebra de linha representada por PHP_EOL.
+     *
+     * @return string Retorna a string lida de STDIN com fgets e processada com rtrim..
      * @throws \Exception
      */
     public function read()
@@ -51,8 +58,9 @@ class DefaultInput implements InputInterface
     }
 
     /**
-     * Return the resource stored in self::$resource
-     * @return STDINcd ..
+     * Retorna o recurso armazenado em self::$resource
+     *
+     * @return STDIN
      */
     public function getResource()
     {

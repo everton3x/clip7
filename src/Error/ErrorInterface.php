@@ -1,43 +1,49 @@
 <?php
 /**
- * CLIP\Error\ErrorInterface file
- * @package CLIP
+ * CLIP\Error\ErrorInterface
+ *
+ * @package    CLIP
  * @subpackage Error
- * @author Everton da Rosa <everton3x@gmail.com>
- * @since 1.0
+ * @author     Everton da Rosa <everton3x@gmail.com>
+ * @since      1.0
  */
 namespace CLIP\Error;
 
 /**
- * Interface to error handler.
+ * Interface para um manipulador de erros.
  *
- * The error is used to log errors, alert/warning and info messages.
+ * O manipulador de erros trata também de alertas e mensagens informativas, tendo a função de log do programa.
  */
 interface ErrorInterface
 {
+
     /**
-     * Write an info message.
-     * @param string $data the info message.
+     * Escreve uma mensagem informativa.
+     *
+     * @param  string $data A mensagem.
      * @return CLIP\Error\ErrorInterface
      */
     public function info(string $data): ErrorInterface;
 
     /**
-     * Write an alert/warning message.
-     * @param string $data The alert/warning message.
+     * Escreve um aviso/alerta.
+     *
+     * @param  string $data O alerta/aviso.
      * @return CLIP\Error\ErrorInterface
      */
     public function alert(string $data): ErrorInterface;
 
     /**
-     * Write an error message.
-     * @param string $data the error message.
+     * Escreve um erro.
+     *
+     * @param  string $data O erro.
      * @return CLIP\Error\ErrorInterface
      */
     public function error(string $data): ErrorInterface;
 
     /**
-     * Get the error resource.
+     * Retorna o recurso.
+     *
      * @return mixed
      */
     public function getResource();

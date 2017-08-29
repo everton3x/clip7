@@ -4,3 +4,4 @@ vendor/
 output/*
 doc/*
 bin/
+/nbproject/private/
