@@ -11,6 +11,7 @@ namespace CLIP;
 use Exception;
 use CLIP\Output\OutputInterface;
 use CLIP\Input\InputInterface;
+use CLIP\Input\Option;
 use CLIP\Error\ErrorInterface;
 use CLIP\Program;
 
@@ -54,6 +55,13 @@ abstract class Program
      * @var CLIP\Error\ErrorInterface $error Um objeto error.
      */
     protected $error = null;
+    
+    /**
+     *
+     * @var array Conjunto de opções configuradas para serem aceitas pelo 
+     * programa e passadas via linha de comando.
+     */
+    protected $options = [];
 
     /**
      * Construtor da classe.
@@ -63,9 +71,11 @@ abstract class Program
      * @param  CLIP\Input\InputInterface   $input  Objeto input.
      * @param  CLIP\Output\OutputInterface $output Objeto output.
      * @param  CLIP\Error\ErrorInterface   $error  Objeto error.
+     * @param  CLIP\InputOption            $options Lista de opções que podem 
+     * ser recebidas via linha de comando.
      * @throws \Exception
      */
-    public function __construct(InputInterface $input, OutputInterface $output, ErrorInterface $error)
+    public function __construct(InputInterface $input, OutputInterface $output, ErrorInterface $error, Option ...$options)
     {
         try {
             /* prepara o ambiente */
@@ -73,11 +83,113 @@ abstract class Program
             $this->output = $output;
             $this->error = $error;
 
+            /* processa as opções */
+            foreach ($options as $option) {
+                $this->options[$option->name()] = $option;
+            }
+
+            if (count($this->options) > 0) {
+                $this->loadOptions();
+            }
+
             /* executa o programa */
             $this->run();
         } catch (Exception $e) {
             throw $e;
         }
+    }
+
+    /**
+     * Processa as opções de linha de comando.
+     * 
+     * @throws \InvalidArgumentException
+     */
+    protected function loadOptions()
+    {
+        $short_string = $this->buildOptionShortString();
+        echo $short_string . PHP_EOL;
+        $long_array = $this->buildOptionLongArray();
+        print_r($long_array);
+        echo PHP_EOL;
+        $value_array = getopt($short_string, $long_array, $opt_err);
+        print_r($value_array);
+        if ($value_array === false) {
+            throw new \InvalidArgumentException("Erro ao processar argumento: $opt_err");
+        }
+
+        if (count($value_array) > 0) {
+            $this->saveOptions($value_array);
+        }
+    }
+
+    /**
+     * Salva os valores recebidos via linha de comando.
+     * 
+     * @param array $values
+     * @return void
+     */
+    protected function saveOptions(array $values): void
+    {
+        foreach ($this->options as $name => $option) {
+            if (key_exists($name, $this->options)) {
+                $option->set($values[$name]);
+            }
+        }
+    }
+
+    /**
+     * Monta o array para opções longas.
+     * 
+     * @return array
+     */
+    protected function buildOptionLongArray(): array
+    {
+        $array = [];
+        $string = '';
+        foreach ($this->options as $option) {
+            if (strlen($option->name()) > 1) {
+                $string = "{$option->name()}";
+                switch ($option->require_value()) {
+                    case \CLIP\Input\Option::NO_VALUE:
+                        break;
+                    case \CLIP\Input\Option::OPTIONAL_VALUE:
+                        $string .= '::';
+                        break;
+                    case \CLIP\Input\Option::REQUIRED_VALUE:
+                        $string .= ':';
+                        break;
+                }
+
+                $array[] = $string;
+            }
+        }
+        return $array;
+    }
+
+    /**
+     * Monta a string para configurar as opções curtas.
+     * 
+     * @return string
+     */
+    protected function buildOptionShortString(): string
+    {
+        $string = '';
+        foreach ($this->options as $option) {
+            if (strlen($option->name()) === 1) {
+                $string .= "{$option->name()}";
+                switch ($option->require_value()) {
+                    case \CLIP\Input\Option::NO_VALUE:
+                        break;
+                    case \CLIP\Input\Option::OPTIONAL_VALUE:
+                        $string .= '::';
+                        break;
+                    case \CLIP\Input\Option::REQUIRED_VALUE:
+                        $string .= ':';
+                        break;
+                }
+            }
+        }
+        return $string;
     }
 
     /**

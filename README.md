@@ -4,9 +4,6 @@
 Um conjunto de ferramentas para facilitar a criação de programas para linha de comando com PHP 7.
 
 ## TODO
-
-- Detecção do número de colunas do terminal
-- Suporte a opções de linha de comando.
 - Elementos de interface básicos
 
 ## CHANGELOG
