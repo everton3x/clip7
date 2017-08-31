@@ -27,7 +27,7 @@ class Screen
             }
         } elseif (\CLIP\Utils\OS::detect() === \CLIP\Utils\OS::OS_LINUX) {
             exec('tput cols', $output, $exit_code);
-            return (int) $output;
+            return (int) join('', $output);
         } else {
             return 0;
         }

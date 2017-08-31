@@ -5,8 +5,6 @@
  * @author  Everton da Rosa <everton3x@gmail.com>
  * @package CLIP
  * @since   1.0
- * @todo    Program::call() Chamar program com argumentos
- * @todo    Adicionar elementos UI básicos
  */
 namespace CLIP;
 
