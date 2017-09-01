@@ -14,7 +14,7 @@ class Option
 {
 
     /*
-     * Constantes para definir se a opção não recebe valor, ou se recebe, se 
+     * Constantes para definir se a opção não recebe valor, ou se recebe, se
      * ele é opcional ou requerido.
      */
     const NO_VALUE = 0;
@@ -30,42 +30,49 @@ class Option
      *
      * @var bool Indica se um valor é requerido.
      */
-    protected $require_value = 0;
+    protected $requireValue = 0;
 
     /**
      *
-     * @var callable Uma função para ser chamada toda vez que se define valor 
+     * @var callable Uma função para ser chamada toda vez que se define valor
      * para o argumento. Opcional.
      */
-    protected $validator = NULL;
+    protected $validator = null;
 
     /**
      *
      * @var string|number|bool O valor do argumento.
      */
-    protected $value = NULL;
+    protected $value = null;
 
     /**
      * Construtor.
-     * 
-     * @param string $name Nome do argumento.
-     * @param int $require_value Indica se um valor é requerido ou não.
-     * @param string|number|bool $default_value Valor padrão para o argumento.
-     * @param callable $validator Uma função validador para o valor do argumento.
+     *
+     * @param  string             $name          Nome do argumento.
+     * @param  int                $requireValue Indica se um valor é requerido ou
+     *                                           não.
+     * @param  string|number|bool $defaultValue Valor padrão para o argumento.
+     * @param  callable           $validator     Uma função validador para o valor
+     *                                           do argumento.
      * @throws \InvalidArgumentException
      */
-    public function __construct(string $name, int $require_value = 0, $default_value = NULL, ?callable $validator = NULL)
-    {
+    public function __construct(
+        string $name,
+        int $requireValue = 0,
+        $defaultValue = null,
+        ?callable $validator = null
+    ) {
         $this->name = $name;
-        $this->require_value = $require_value;
+        $this->requireValue = $requireValue;
         $this->validator = $validator;
-        if ($this->set($default_value) === false) {
-            throw new \InvalidArgumentException("default_value inválido: $default_value");
+        if ($this->set($defaultValue) === false) {
+            throw new \InvalidArgumentException("default_value inválido: $defaultValue");
         }
     }
 
     /**
      * Retorna o valor do argumento.
+     *
      * @return string|number|bool
      */
     public function get()
@@ -75,8 +82,8 @@ class Option
 
     /**
      * Define o valor do argumento.
-     * 
-     * @param string|number|bool $value
+     *
+     * @param  string|number|bool $value
      * @return bool
      */
     public function set($value): bool
@@ -93,7 +100,7 @@ class Option
 
     /**
      * Retorna o nome da opção.
-     * 
+     *
      * @return string
      */
     public function name(): string
@@ -103,10 +110,11 @@ class Option
 
     /**
      * Retorna se a opção leva valor e se este é requerido ou opcional.
+     *
      * @return int
      */
-    public function require_value(): int
+    public function requireValue(): int
     {
-        return $this->require_value;
+        return $this->requireValue;
     }
 }

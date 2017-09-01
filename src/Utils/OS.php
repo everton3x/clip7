@@ -1,12 +1,11 @@
 <?php
-
 /**
  * Classe utilitária CLIP\Utils\OS.
  *
- * @author  Everton da Rosa <everton3x@gmail.com>
- * @package CLIP
+ * @author     Everton da Rosa <everton3x@gmail.com>
+ * @package    CLIP
  * @subpackage Utils
- * @since   1.0
+ * @since      1.0
  */
 namespace CLIP\Utils;
 
@@ -27,19 +26,22 @@ class OS
      * Detecta o sistema operacional.
      *
      * @return int Retorna um inteiro para ser comparado com as constantes OS_*.
-     * @see https://stackoverflow.com/questions/738823/possible-values-for-php-os
+     * @see    https://stackoverflow.com/questions/738823/possible-values-for-php-os
      */
-    static public function detect(): int
+    public static function detect(): int
     {
         switch (PHP_OS) {
             case 'Linux':
                 return self::OS_LINUX;
+            break;
             case 'WINNT':
             case 'WIN32':
             case 'Windows':
                 return self::OS_WINDOWS;
+            break;
             default:
                 return self::OS_UNKNOW;
+            break;
         }
     }
 }

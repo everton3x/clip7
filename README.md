@@ -4,7 +4,11 @@
 Um conjunto de ferramentas para facilitar a criação de programas para linha de comando com PHP 7.
 
 ## TODO
-- Elementos de interface básicos
+- Linha horizontal
+- Registro de etapas e subetapas
+- Caixa de mensagens
+- Exibição em colunas
+- Exibição em tabela
 
 ## CHANGELOG
 
@@ -16,6 +20,10 @@ Um conjunto de ferramentas para facilitar a criação de programas para linha de
 - & Depreciado
 
 ### 1.0 - Em desenvolvimento
+- \+ Programa básico com suporte a argumentos de linha de comando
+- \+ Input e Output padrão com STDIN e STDOUT
+- \+ Entrada de dados por prompt e menu
+- \+ Barra de progresso
 
 ## Como contribuir
 
