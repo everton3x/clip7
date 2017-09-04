@@ -96,4 +96,15 @@ class DefaultError implements ErrorInterface
     {
         return $this->resource;
     }
+    
+    /**
+     * Escreve uma quebra de linha ao final com PHP_EOL.
+     *
+     * @return CLIP\Output\ErrorInterface
+     */
+    public function eol(): ErrorInterface
+    {
+        fwrite($this->getResource(), PHP_EOL);
+        return $this;
+    }
 }
